@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>NexaEx — Trade the Future. Before It Arrives.</title>
+<meta name="description" content="NexaEx is the next-generation crypto exchange. Lightning-fast, AI-powered, launching June 2026. Join the waitlist."/>
+<meta property="og:title" content="NexaEx — Trade the Future"/>
+<meta property="og:description" content="The next-generation crypto exchange. Launching June 2026."/>
+<meta property="og:type" content="website"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:#0D0F14;color:#E2E8F0;line-height:1.6;overflow-x:hidden}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(13,15,20,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(59,130,246,0.1)}
+.nav-logo{font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:-0.5px}
+.nav-logo span{color:#3B82F6}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:#94A3B8;text-decoration:none;font-size:0.9rem;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:#3B82F6;color:#fff;border:none;padding:0.5rem 1.2rem;border-radius:8px;font-size:0.9rem;font-family:inherit;cursor:pointer;font-weight:500;transition:background .2s}
+.nav-cta:hover{background:#2563EB}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 4rem;overflow:hidden}
+.pulse-dot{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,178,0.08);border:1px solid rgba(0,255,178,0.2);border-radius:100px;padding:.35rem 1rem;font-size:.8rem;color:#00FFB2;margin-bottom:2rem;letter-spacing:.05em}
+.pulse-dot::before{content:'';width:7px;height:7px;border-radius:50%;background:#00FFB2;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+h1{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:700;line-height:1.1;letter-spacing:-2px;margin-bottom:1.5rem;max-width:900px}
+h1 span{color:#3B82F6}
+.hero-sub{font-size:1.15rem;color:#94A3B8;max-width:540px;margin:0 auto 3rem}
+
+/* TIMER */
+.timer{display:flex;gap:1.5rem;justify-content:center;margin-bottom:3rem;flex-wrap:wrap}
+.timer-block{text-align:center;min-width:80px}
+.timer-num{font-size:2.8rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-1px;display:block}
+.timer-label{font-size:.7rem;color:#94A3B8;text-transform:uppercase;letter-spacing:.15em;margin-top:4px}
+.timer-sep{font-size:2.5rem;font-weight:300;color:#3B82F6;align-self:flex-start;padding-top:4px}
+
+/* FORM */
+.waitlist-form{display:flex;gap:.75rem;max-width:480px;width:100%;margin:0 auto 1.5rem;flex-wrap:wrap}
+.waitlist-form input{flex:1;min-width:220px;padding:.85rem 1.2rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:.95rem;font-family:inherit;outline:none;transition:border-color .2s}
+.waitlist-form input:focus{border-color:#3B82F6}
+.waitlist-form input::placeholder{color:#475569}
+.btn-primary{background:#3B82F6;color:#fff;border:none;padding:.85rem 1.8rem;border-radius:10px;font-size:.95rem;font-family:inherit;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
+.btn-primary:hover{background:#2563EB;transform:translateY(-1px)}
+.success-msg{display:none;color:#00FFB2;font-size:.9rem;margin-top:.5rem;text-align:center}
+.hero-counter{font-size:.85rem;color:#64748B}
+.hero-counter strong{color:#94A3B8}
+
+/* SECTIONS */
+section{padding:6rem 1.5rem}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;color:#3B82F6;margin-bottom:.75rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-1px;margin-bottom:1rem}
+.section-sub{color:#94A3B8;max-width:500px;font-size:1rem}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3.5rem}
+.feature-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:1.75rem;transition:border-color .25s,transform .25s}
+.feature-card:hover{border-color:rgba(59,130,246,.35);transform:translateY(-3px)}
+.feature-icon{width:44px;height:44px;border-radius:12px;background:rgba(59,130,246,.12);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:1.3rem}
+.feature-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.5rem;color:#F1F5F9}
+.feature-card p{font-size:.88rem;color:#64748B;line-height:1.6}
+
+/* STATS */
+#stats{background:#080A0E;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;text-align:center;margin-top:3rem}
+.stat-num{font-size:3rem;font-weight:700;color:#fff;letter-spacing:-2px;line-height:1}
+.stat-num span{color:#3B82F6}
+.stat-label{font-size:.85rem;color:#64748B;margin-top:.5rem}
+
+/* ROADMAP */
+#roadmap{background:#0D0F14}
+.timeline{display:flex;gap:0;margin-top:3.5rem;position:relative;flex-wrap:wrap}
+.tl-item{flex:1;min-width:180px;padding:1.5rem 1.25rem;border-top:2px solid rgba(255,255,255,.08);position:relative}
+.tl-item.active{border-top-color:#3B82F6}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.15);position:absolute;top:-7px;left:1.25rem}
+.tl-item.active .tl-dot{background:#3B82F6;box-shadow:0 0 12px rgba(59,130,246,.6)}
+.tl-period{font-size:.75rem;color:#3B82F6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
+.tl-item:not(.active) .tl-period{color:#475569}
+.tl-title{font-size:1rem;font-weight:600;color:#F1F5F9;margin-bottom:.4rem}
+.tl-item:not(.active) .tl-title{color:#64748B}
+.tl-desc{font-size:.82rem;color:#475569;line-height:1.5}
+.tl-badge{display:inline-block;background:rgba(59,130,246,.15);color:#3B82F6;font-size:.7rem;padding:2px 8px;border-radius:100px;margin-bottom:.5rem;border:1px solid rgba(59,130,246,.3)}
+
+/* CTA */
+#cta{background:#080A0E;border-top:1px solid rgba(59,130,246,.1)}
+.cta-box{background:linear-gradient(135deg,rgba(59,130,246,.08) 0%,rgba(0,255,178,.04) 100%);border:1px solid rgba(59,130,246,.2);border-radius:24px;padding:4rem 3rem;text-align:center;max-width:700px;margin:0 auto}
+.cta-box h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-1px;margin-bottom:1rem}
+.cta-box p{color:#94A3B8;margin-bottom:2rem;max-width:440px;margin-left:auto;margin-right:auto}
+.cta-perks{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.cta-perk{font-size:.82rem;color:#94A3B8;display:flex;align-items:center;gap:6px}
+.cta-perk::before{content:'✓';color:#00FFB2;font-weight:700}
+
+/* FOOTER */
+footer{background:#080A0E;padding:3rem 1.5rem;border-top:1px solid rgba(255,255,255,.05)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.5rem;text-align:center}
+.footer-logo{font-size:1.4rem;font-weight:700;color:#fff}
+.footer-logo span{color:#3B82F6}
+.footer-contact{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.85rem;color:#64748B}
+.footer-contact a{color:#64748B;text-decoration:none;transition:color .2s}
+.footer-contact a:hover{color:#94A3B8}
+.footer-links{display:flex;gap:1.75rem;flex-wrap:wrap;justify-content:center}
+.footer-links a{color:#475569;text-decoration:none;font-size:.85rem;transition:color .2s;cursor:pointer}
+.footer-links a:hover{color:#94A3B8}
+.footer-disclaimer{font-size:.75rem;color:#334155;max-width:640px;line-height:1.7}
+.footer-copy{font-size:.8rem;color:#334155}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem}
+.modal-overlay.open{display:flex}
+.modal{background:#131720;border:1px solid rgba(255,255,255,.08);border-radius:20px;max-width:700px;width:100%;max-height:85vh;display:flex;flex-direction:column;overflow:hidden}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.modal-header h2{font-size:1.2rem;font-weight:700;color:#F1F5F9}
+.modal-close{background:none;border:none;color:#64748B;font-size:1.5rem;cursor:pointer;line-height:1;transition:color .2s}
+.modal-close:hover{color:#fff}
+.modal-body{padding:1.75rem 2rem;overflow-y:auto;font-size:.875rem;color:#94A3B8;line-height:1.8}
+.modal-body h3{font-size:1rem;font-weight:600;color:#E2E8F0;margin:1.5rem 0 .5rem}
+.modal-body h3:first-child{margin-top:0}
+.modal-body p{margin-bottom:.75rem}
+.modal-body ul{padding-left:1.25rem;margin-bottom:.75rem}
+.modal-body ul li{margin-bottom:.35rem}
+.modal-meta{font-size:.75rem;color:#475569;margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.05)}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  h1{letter-spacing:-1px}
+  .timeline{flex-direction:column}
+  .tl-item{border-top:none;border-left:2px solid rgba(255,255,255,.08);padding:1rem 1.5rem}
+  .tl-item.active{border-left-color:#3B82F6}
+  .tl-dot{top:1.1rem;left:-7px}
+  .cta-box{padding:2.5rem 1.5rem}
+  .modal-body{padding:1.25rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Nexa<span>Ex</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#cta">Waitlist</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.querySelector('#hero input').focus()">Join Waitlist</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-bg"></div>
+  <div class="pulse-dot">Coming June 2026</div>
+  <h1>Trade the <span>Future.</span><br/>Before It Arrives.</h1>
+  <p class="hero-sub">NexaEx is the next-generation crypto exchange built for speed, intelligence, and scale. One platform — from your first trade to institutional volume.</p>
+  <div class="timer">
+    <div class="timer-block"><span class="timer-num" id="t-days">00</span><span class="timer-label">Days</span></div>
+    <div class="timer-sep">:</div>
+    <div class="timer-block"><span class="timer-num" id="t-hours">00</span><span class="timer-label">Hours</span></div>
+    <div class="timer-sep">:</div>
+    <div class="timer-block"><span class="timer-num" id="t-mins">00</span><span class="timer-label">Minutes</span></div>
+    <div class="timer-sep">:</div>
+    <div class="timer-block"><span class="timer-num" id="t-secs">00</span><span class="timer-label">Seconds</span></div>
+  </div>
+  <div class="waitlist-form" id="hero-form">
+    <input type="email" id="hero-email" placeholder="Enter your email address"/>
+    <button class="btn-primary" onclick="submitWaitlist('hero')">Join Waitlist →</button>
+  </div>
+  <div class="success-msg" id="hero-success">🎉 You're on the list! We'll notify you at launch.</div>
+  <p class="hero-counter"><strong>14,382 traders</strong> already waiting for early access</p>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-tag">Why NexaEx</p>
+      <h2 class="section-title">Everything you need.<br/>Nothing you don't.</h2>
+      <p class="section-sub">Built from the ground up with professional-grade infrastructure and a clean, intuitive interface.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in"><div class="feature-icon">⚡</div><h3>0.01ms Order Execution</h3><p>Ultra-low latency matching engine processes over 1 million orders per second. No slippage, no lag — pure speed.</p></div>
+      <div class="feature-card fade-in"><div class="feature-icon">🤖</div><h3>AI Market Assistant</h3><p>Built-in AI analyzes charts, sentiment, and on-chain data in real time. Get actionable insights tailored to your strategy.</p></div>
+      <div class="feature-card fade-in"><div class="feature-icon">💎</div><h3>Zero Fees — First 30 Days</h3><p>Every user on the waitlist gets 30 days of zero-fee trading after launch. No hidden charges, no fine print.</p></div>
+      <div class="feature-card fade-in"><div class="feature-icon">🔗</div><h3>Web3 & DeFi Integration</h3><p>Connect MetaMask, Ledger, or any WalletConnect-compatible wallet. Bridge assets directly from DeFi protocols.</p></div>
+      <div class="feature-card fade-in"><div class="feature-icon">📊</div><h3>300+ Trading Pairs</h3><p>From BTC and ETH to emerging altcoins — deep liquidity across 300+ pairs from day one, with more added weekly.</p></div>
+      <div class="feature-card fade-in"><div class="feature-icon">🏦</div><h3>Institutional & Retail</h3><p>Sub-accounts, API trading, OTC desk, and advanced order types for professionals. Simple UI for beginners.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="fade-in" style="text-align:center">
+      <p class="section-tag">By the numbers</p>
+      <h2 class="section-title">Built at scale from day one</h2>
+    </div>
+    <div class="stats-grid fade-in">
+      <div><div class="stat-num">$<span>2.4</span>B</div><div class="stat-label">Expected Day-1 Liquidity</div></div>
+      <div><div class="stat-num">0.<span>01</span>ms</div><div class="stat-label">Order Execution Speed</div></div>
+      <div><div class="stat-num"><span>300</span>+</div><div class="stat-label">Trading Pairs at Launch</div></div>
+      <div><div class="stat-num"><span>48</span></div><div class="stat-label">Engineers & Traders on Team</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-tag">Roadmap</p>
+      <h2 class="section-title">On track. On time.</h2>
+      <p class="section-sub">We're heads-down building. Here's where we are and where we're going.</p>
+    </div>
+    <div class="timeline fade-in">
+      <div class="tl-item"><div class="tl-dot"></div><p class="tl-period">Q4 2025</p><p class="tl-title">Foundation</p><p class="tl-desc">Core matching engine built, security audits passed, regulatory framework established in 3 jurisdictions.</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><p class="tl-period">Q1 2026</p><p class="tl-title">Alpha Testing</p><p class="tl-desc">Internal alpha with 500 testers. AI assistant beta, Web3 wallet integrations, mobile app prototype.</p></div>
+      <div class="tl-item active"><div class="tl-dot"></div><span class="tl-badge">You are here</span><p class="tl-period">Q2 2026</p><p class="tl-title">Waitlist & Final Prep</p><p class="tl-desc">Collecting early users, stress-testing infrastructure, onboarding liquidity partners and market makers.</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><p class="tl-period">June 2026</p><p class="tl-title">Public Launch 🚀</p><p class="tl-desc">Full platform live. Waitlist users get first access, zero-fee period, and exclusive launch rewards.</p></div>
+      <div class="tl-item"><div class="tl-dot"></div><p class="tl-period">Q3 2026</p><p class="tl-title">Futures & Staking</p><p class="tl-desc">Perpetual futures, margin trading, NexaEx Earn staking vaults, and institutional API launch.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-box fade-in">
+      <h2>Be first.<br/>Trade better.</h2>
+      <p>Join the waitlist today and get exclusive early access, zero trading fees for 30 days, and launch rewards.</p>
+      <div class="cta-perks">
+        <span class="cta-perk">Early access before public launch</span>
+        <span class="cta-perk">30-day zero-fee trading</span>
+        <span class="cta-perk">Exclusive launch bonuses</span>
+      </div>
+      <div class="waitlist-form" style="justify-content:center">
+        <input type="email" id="cta-email" placeholder="your@email.com"/>
+        <button class="btn-primary" onclick="submitWaitlist('cta')">Reserve My Spot →</button>
+      </div>
+      <div class="success-msg" id="cta-success">🎉 You're on the list! We'll notify you at launch.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Nexa<span>Ex</span></div>
+
+    <div class="footer-contact">
+      <span>📍 NexaEx Technologies Ltd., 27 Finsbury Square, London EC2A 1AG, United Kingdom</span>
+      <a href="mailto:support@nexaex.io">✉️ support@nexaex.io</a>
+      <a href="tel:+442045718300">📞 +44 20 4571 8300</a>
+    </div>
+
+    <div class="footer-links">
+      <a onclick="openModal('terms')">Terms of Service</a>
+      <a onclick="openModal('privacy')">Privacy Policy</a>
+    </div>
+
+    <p class="footer-disclaimer">Crypto trading involves significant risk of loss. Past performance is not indicative of future results. NexaEx is not yet a licensed exchange and does not provide investment advice. This page is for informational purposes only and does not constitute a financial offer or solicitation. Launch date is subject to regulatory approval. Please read our <a href="#" onclick="openModal('terms');return false;" style="color:#475569;text-decoration:underline">Terms of Service</a> and <a href="#" onclick="openModal('privacy');return false;" style="color:#475569;text-decoration:underline">Privacy Policy</a> before proceeding.</p>
+    <p class="footer-copy">© 2026 NexaEx Technologies Ltd. All rights reserved. Registered in England & Wales · Company No. 15847392</p>
+  </div>
+</footer>
+
+<!-- TERMS OF SERVICE MODAL -->
+<div class="modal-overlay" id="modal-terms">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Terms of Service</h2>
+      <button class="modal-close" onclick="closeModal('terms')">×</button>
+    </div>
+    <div class="modal-body">
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing or using the NexaEx website (nexaex.io) and submitting your email address to join the waitlist, you agree to be bound by these Terms of Service ("Terms"). If you do not agree, please do not use this website.</p>
+
+      <h3>2. Description of Service</h3>
+      <p>NexaEx Technologies Ltd. ("NexaEx", "we", "us") operates a pre-launch landing page for an upcoming cryptocurrency trading platform. The platform has not yet launched. Joining the waitlist does not guarantee access to the platform, any specific trading conditions, or any financial benefit.</p>
+
+      <h3>3. Eligibility</h3>
+      <p>You must be at least 18 years of age to use this website and to register for early access. By submitting your information, you confirm that you meet this requirement. NexaEx reserves the right to restrict access based on jurisdiction. Citizens or residents of sanctioned countries or territories are not permitted to register.</p>
+
+      <h3>4. Waitlist Registration</h3>
+      <p>Submitting your email address constitutes registration for the NexaEx waitlist. This does not create any contractual obligation on the part of NexaEx to provide access to the platform, maintain any specific fee structure, or launch the platform on any specific date. Waitlist position does not guarantee early access.</p>
+
+      <h3>5. No Financial Advice</h3>
+      <p>Nothing on this website constitutes financial, investment, legal, or tax advice. Cryptocurrency trading is highly speculative and involves substantial risk of loss, including the possible loss of all invested funds. You should consult a qualified financial adviser before making any investment decisions.</p>
+
+      <h3>6. Intellectual Property</h3>
+      <p>All content on this website, including but not limited to text, graphics, logos, and design, is the property of NexaEx Technologies Ltd. and is protected by applicable intellectual property laws. Unauthorised reproduction or use is strictly prohibited.</p>
+
+      <h3>7. Disclaimer of Warranties</h3>
+      <p>This website is provided on an "as is" and "as available" basis without warranties of any kind, express or implied. NexaEx does not warrant that the website will be error-free, uninterrupted, or free of viruses or other harmful components.</p>
+
+      <h3>8. Limitation of Liability</h3>
+      <p>To the maximum extent permitted by law, NexaEx Technologies Ltd. shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of, or inability to use, this website or the waitlist service.</p>
+
+      <h3>9. Governing Law</h3>
+      <p>These Terms are governed by and construed in accordance with the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+      <h3>10. Changes to Terms</h3>
+      <p>NexaEx reserves the right to modify these Terms at any time. Changes will be effective upon posting to this page. Continued use of the website following any changes constitutes your acceptance of the revised Terms.</p>
+
+      <h3>11. Contact</h3>
+      <p>For questions regarding these Terms, please contact us at:<br/>
+      NexaEx Technologies Ltd., 27 Finsbury Square, London EC2A 1AG, United Kingdom<br/>
+      Email: <a href="mailto:legal@nexaex.io" style="color:#3B82F6">legal@nexaex.io</a><br/>
+      Phone: +44 20 4571 8300</p>
+
+      <p class="modal-meta">Last updated: 1 May 2026</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY POLICY MODAL -->
+<div class="modal-overlay" id="modal-privacy">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Privacy Policy</h2>
+      <button class="modal-close" onclick="closeModal('privacy')">×</button>
+    </div>
+    <div class="modal-body">
+      <h3>1. Who We Are</h3>
+      <p>NexaEx Technologies Ltd. ("NexaEx", "we", "our") is the data controller for personal data collected through this website. Registered office: 27 Finsbury Square, London EC2A 1AG, United Kingdom. Company No. 15847392.</p>
+      <p>Data Protection contact: <a href="mailto:privacy@nexaex.io" style="color:#3B82F6">privacy@nexaex.io</a></p>
+
+      <h3>2. What Data We Collect</h3>
+      <p>When you join our waitlist, we collect the following personal data:</p>
+      <ul>
+        <li>Email address (required)</li>
+        <li>IP address and approximate geographic location (collected automatically)</li>
+        <li>Browser type and device information (collected automatically via cookies)</li>
+        <li>Date and time of submission</li>
+      </ul>
+
+      <h3>3. How We Use Your Data</h3>
+      <p>We use your personal data for the following purposes:</p>
+      <ul>
+        <li>To add you to the NexaEx waitlist and notify you when the platform launches</li>
+        <li>To send you product updates, early access invitations, and promotional communications (you may opt out at any time)</li>
+        <li>To analyse website traffic and improve our service</li>
+        <li>To comply with legal and regulatory obligations</li>
+      </ul>
+
+      <h3>4. Legal Basis for Processing (GDPR)</h3>
+      <p>For users in the European Economic Area and United Kingdom, our legal bases for processing are:</p>
+      <ul>
+        <li><strong>Consent</strong> — for marketing communications and optional cookies</li>
+        <li><strong>Legitimate interests</strong> — for analytics and security purposes</li>
+        <li><strong>Legal obligation</strong> — where required by applicable law</li>
+      </ul>
+
+      <h3>5. Data Retention</h3>
+      <p>We retain your email address for up to 24 months from the date of submission, or until you unsubscribe, whichever is earlier. After this period, your data will be securely deleted or anonymised.</p>
+
+      <h3>6. Data Sharing</h3>
+      <p>We do not sell your personal data. We may share your data with trusted third-party service providers who assist us in operating this website and communications (e.g. email delivery platforms), subject to appropriate data processing agreements. All processors are required to handle your data in accordance with applicable law.</p>
+
+      <h3>7. International Transfers</h3>
+      <p>Your data may be processed outside of the UK or EEA. Where this occurs, we ensure appropriate safeguards are in place, including Standard Contractual Clauses approved by the relevant authority.</p>
+
+      <h3>8. Your Rights</h3>
+      <p>Under UK GDPR and applicable data protection law, you have the right to:</p>
+      <ul>
+        <li>Access the personal data we hold about you</li>
+        <li>Rectify inaccurate or incomplete data</li>
+        <li>Request erasure of your personal data ("right to be forgotten")</li>
+        <li>Object to or restrict processing</li>
+        <li>Data portability</li>
+        <li>Withdraw consent at any time (without affecting prior processing)</li>
+      </ul>
+      <p>To exercise your rights, contact us at <a href="mailto:privacy@nexaex.io" style="color:#3B82F6">privacy@nexaex.io</a>. We will respond within 30 days.</p>
+
+      <h3>9. Cookies</h3>
+      <p>This website uses essential cookies for functionality and analytics cookies to understand visitor behaviour. By continuing to use this website, you consent to the use of cookies as described here. You may disable cookies in your browser settings, though this may affect website functionality.</p>
+
+      <h3>10. Security</h3>
+      <p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, disclosure, alteration, or destruction.</p>
+
+      <h3>11. Contact & Complaints</h3>
+      <p>For privacy enquiries:<br/>
+      NexaEx Technologies Ltd., 27 Finsbury Square, London EC2A 1AG, UK<br/>
+      Email: <a href="mailto:privacy@nexaex.io" style="color:#3B82F6">privacy@nexaex.io</a><br/>
+      Phone: +44 20 4571 8300</p>
+      <p>You also have the right to lodge a complaint with the UK Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" style="color:#3B82F6">ico.org.uk</a>.</p>
+
+      <p class="modal-meta">Last updated: 1 May 2026 · Applies to nexaex.io</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// TIMER
+const launch = new Date('2026-06-28T00:00:00').getTime();
+function updateTimer(){
+  const diff = launch - Date.now();
+  if(diff <= 0){document.querySelectorAll('.timer-num').forEach(el=>el.textContent='00');return}
+  const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+  document.getElementById('t-days').textContent=String(d).padStart(2,'0');
+  document.getElementById('t-hours').textContent=String(h).padStart(2,'0');
+  document.getElementById('t-mins').textContent=String(m).padStart(2,'0');
+  document.getElementById('t-secs').textContent=String(s).padStart(2,'0');
+}
+updateTimer();setInterval(updateTimer,1000);
+
+// WAITLIST
+function submitWaitlist(p){
+  const inp=document.getElementById(p+'-email');
+  const form=inp.closest('.waitlist-form');
+  const msg=document.getElementById(p+'-success');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value.trim())){inp.style.borderColor='#EF4444';inp.focus();setTimeout(()=>inp.style.borderColor='',1500);return}
+  form.style.display='none';msg.style.display='block';
+}
+
+// MODALS
+function openModal(id){
+  document.getElementById('modal-'+id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById('modal-'+id).classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.modal-overlay').forEach(el=>{
+  el.addEventListener('click',e=>{if(e.target===el){const id=el.id.replace('modal-','');closeModal(id);}});
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') document.querySelectorAll('.modal-overlay.open').forEach(el=>{const id=el.id.replace('modal-','');closeModal(id);});
+});
+
+// FADE IN
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
